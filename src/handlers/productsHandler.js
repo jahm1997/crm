@@ -20,11 +20,10 @@ const getProducts = async (req, res) => {
 //----------------------------------- HANDLERS POST -----------------------------------\\
 const postProduct = async (req, res) => {
   const data = req.body;
-  const { path } = req.file;
+  // const { path } = req.file;
   try {
     console.log(req.body);
-    console.log(req.file);
-    const img = fs.readFileSync(path).buffer;
+    const img = fs.readFileSync(data.formData.path).buffer;
     const image = await uploadFile(img, "products");
     // const response = await createProduct({ ...data, image });
     res.status(200).json("todo bien");

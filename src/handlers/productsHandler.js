@@ -19,7 +19,7 @@ const getProducts = async (req, res) => {
 
 //----------------------------------- HANDLERS POST -----------------------------------\\
 const postProduct = async (req, res) => {
-  const data = req.body.productData;
+  const data = JSON.parse(req.body.productData);
   const { path } = req.file;
   try {
     console.log("Esto es unicamente data =", data);

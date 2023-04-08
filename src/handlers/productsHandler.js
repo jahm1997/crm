@@ -23,7 +23,7 @@ const postProduct = async (req, res) => {
   // const { path } = req.file;
   try {
     console.log(data);
-    console.log(data.formData);
+    console.log(data.formData.path);
     const img = fs.readFileSync(data.formData.path).buffer;
     const image = await uploadFile(img, "products");
     const response = await createProduct({ ...data, image });

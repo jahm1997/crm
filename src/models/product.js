@@ -13,6 +13,7 @@ module.exports = (database) => {
       name: DataTypes.STRING,
       image: {
         type: DataTypes.BLOB("long"),
+        allowNull: false,
       },
       quantity: DataTypes.INTEGER,
       enable: DataTypes.BOOLEAN,

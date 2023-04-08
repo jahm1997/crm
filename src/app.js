@@ -32,8 +32,6 @@ server.set("src engine", "ejs");
 const storage = multer.diskStorage({
   destination: path.join(__dirname, "./public/images"),
   filename: function (req, file, cb) {
-    console.log(req.body);
-    console.log(file);
     cb(
       null,
       req.body.name + "-" + file.originalname
@@ -43,10 +41,12 @@ const storage = multer.diskStorage({
   },
 });
 
+// const storage = multer.memoryStorage();
+
 server.use(
   multer({
     storage,
-    dest: path.join(__dirname, "./public/images"),
+    // dest: path.join(__dirname, "./public/images"),
     fileFilter: function (req, file, cb) {
       const filetype = /jpeg|jpg|png|gif/;
       const mimetype = filetype.test(file.mimetype);
@@ -59,7 +59,10 @@ server.use(
   }).single("image")
 );
 
-server.use("/api", require("./routes"));
+// server.use(express.static("./public/images"));
+// server.use(express.urlencoded({ extended: true }));
+
+server.use("/api", require("./routes/"));
 
 // Error catching endware.
 server.use((err, req, res, next) => {

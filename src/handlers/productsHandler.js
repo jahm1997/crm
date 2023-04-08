@@ -19,13 +19,14 @@ const getProducts = async (req, res) => {
 
 //----------------------------------- HANDLERS POST -----------------------------------\\
 const postProduct = async (req, res) => {
-  // const data = req.body;
-  // const { path } = req.file;
+  const data = req.body.productData;
+  const { path } = req.file;
   try {
-    console.log(req.body);
+    console.log("Esto es unicamente data =", data);
+    console.log("Esto es para saber que tipo es =", typeof data);
     console.log(req.file);
-    // const img = fs.readFileSync(data.formData.path).buffer;
-    // const image = await uploadFile(img, "products");
+    const img = fs.readFileSync(path).buffer;
+    const image = await uploadFile(img, "products");
     // const response = await createProduct({ ...data, image });
     res.status(200).json("Todo ha salido perfecto");
   } catch (error) {

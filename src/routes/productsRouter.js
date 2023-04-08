@@ -4,6 +4,7 @@ const {
   postProduct,
   putProduct,
 } = require("../handlers/productsHandler");
+
 const productsRouter = Router();
 
 productsRouter.get("/product", getProducts);

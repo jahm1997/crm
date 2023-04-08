@@ -15,8 +15,6 @@ const dashboard_bossRouter = require("./dashboard_bossRouter.js");
 const paymentRouter = require('./paymentRouter.js');
 
 const router = Router();
-//middleware
-
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 router.use("/", bossRouter);

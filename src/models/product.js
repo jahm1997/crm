@@ -11,16 +11,13 @@ module.exports = (database) => {
         defaultValue: DataTypes.UUIDV4,
       },
       name: DataTypes.STRING,
-      image: {
-        type: DataTypes.BLOB("long"),
-        allowNull: false,
-      },
       quantity: DataTypes.INTEGER,
       enable: DataTypes.BOOLEAN,
       cost_price: DataTypes.NUMERIC,
       sale_price: DataTypes.NUMERIC,
       discount: DataTypes.NUMERIC,
       category: DataTypes.STRING,
+      image: DataTypes.STRING,
     },
     {
       timestamps: false,

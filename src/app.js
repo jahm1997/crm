@@ -2,8 +2,9 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
-const path = require("path");
+const routes = require("./routes/index.js");
 const multer = require("multer");
+const path = require("path");
 
 require("./db.js");
 
@@ -25,28 +26,21 @@ server.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 });
-//settings multer
+
 server.set("src", path.join(__dirname, "src"));
 server.set("src engine", "ejs");
 
 const storage = multer.diskStorage({
   destination: path.join(__dirname, "./public/images"),
   filename: function (req, file, cb) {
-    cb(
-      null,
-      req.body.name + "-" + file.originalname
-      // "." +
-      // file.mimetype.split("/")[1]
-    );
+    cb(null, req.body.name + "-" + file.originalname);
   },
 });
-
-// const storage = multer.memoryStorage();
 
 server.use(
   multer({
     storage,
-    // dest: path.join(__dirname, "./public/images"),
+    dest: path.join(__dirname, "./public/images"),
     fileFilter: function (req, file, cb) {
       const filetype = /jpeg|jpg|png|gif/;
       const mimetype = filetype.test(file.mimetype);
@@ -59,10 +53,7 @@ server.use(
   }).single("image")
 );
 
-// server.use(express.static("./public/images"));
-// server.use(express.urlencoded({ extended: true }));
-
-server.use("/api", require("./routes/"));
+server.use("/api", require("./routes"));
 
 // Error catching endware.
 server.use((err, req, res, next) => {

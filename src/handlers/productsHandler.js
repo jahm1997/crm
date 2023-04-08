@@ -2,7 +2,7 @@
 const allProducts = require("../controllers/products/getAllProducts.js");
 const createProduct = require("../controllers/products/createProduct.js");
 const updateProduct = require("../controllers/products/modifyProduct.js");
-const uploadFile = require("../configFirebase/firebase.js");
+const uploadFile = require("../firebase.js");
 const fs = require("fs");
 //Aca deberiamos de importar nuestros controllers
 
@@ -19,38 +19,15 @@ const getProducts = async (req, res) => {
 
 //----------------------------------- HANDLERS POST -----------------------------------\\
 const postProduct = async (req, res) => {
-  const {
-    name,
-    quantity,
-    enable,
-    cost_price,
-    sale_price,
-    discount,
-    category,
-    bossId,
-  } = req.body;
+  const data = req.body;
   const { path } = req.file;
   try {
+    console.log(req.body);
+    console.log(req.file);
     const img = fs.readFileSync(path).buffer;
-    // console.log("Esto es productsHandler!", req.file);
     const image = await uploadFile(img, "products");
-    // console.log("Esto es image de la linea37 productHandler!", image);
-    // const image = buffer.buffer;
-    if (bossId) {
-      const response = await createProduct({
-        name,
-        quantity: Number(quantity),
-        enable: Boolean(enable),
-        cost_price: Number(cost_price),
-        sale_price: Number(sale_price),
-        discount: Number(discount),
-        category,
-        bossId,
-        image,
-      });
-    }
-    res.status(200).send("Producto creado/agregado correctamente!");
-    //   res.status(200).json(response);
+    // const response = await createProduct({ ...data, image });
+    res.status(200).json("todo bien");
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

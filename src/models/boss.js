@@ -16,9 +16,6 @@ module.exports = (database) => {
           len: [3, 40],
         },
       },
-      image: {
-        type: DataTypes.BLOB("long"),
-      },
       username: {
         type: DataTypes.STRING,
         allowNull: false,

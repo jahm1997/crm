@@ -22,11 +22,12 @@ const postProduct = async (req, res) => {
   const data = req.body;
   // const { path } = req.file;
   try {
-    console.log(req.body);
+    console.log(data);
+    console.log(data.formData);
     const img = fs.readFileSync(data.formData.path).buffer;
     const image = await uploadFile(img, "products");
-    // const response = await createProduct({ ...data, image });
-    res.status(200).json("todo bien");
+    const response = await createProduct({ ...data, image });
+    res.status(200).json(response);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

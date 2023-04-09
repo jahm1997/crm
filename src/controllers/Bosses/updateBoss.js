@@ -9,7 +9,7 @@ const updateBoss = async (data, path) => {
     const img = fs.readFileSync(path).buffer;
     const logo = await uploadFile(img, "boss");
     const dataAct = { ...data, logo };
-    var id = dataAct.id;
+    const id = dataAct.id;
     delete dataAct.id;
     var [resultado] = await Boss.update(dataAct, {
       where: {
@@ -18,7 +18,7 @@ const updateBoss = async (data, path) => {
     });
   } else {
     const dataAct = { ...data };
-    var id = dataAct.id;
+    const id = dataAct.id;
     delete dataAct.id;
     var [resultado] = await Boss.update(dataAct, {
       where: {

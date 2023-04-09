@@ -8,6 +8,7 @@ const updateProduct = async (data, path) => {
     const img = fs.readFileSync(path).buffer;
     const image = await uploadFile(img, "products");
     const dataAct = { ...data, image };
+    console.log("En linea 11 modifyproduct", dataAct);
     const id = dataAct.id;
     delete dataAct.id;
     var [resultado] = await Product.update(dataAct, {
@@ -17,6 +18,7 @@ const updateProduct = async (data, path) => {
     });
   } else {
     const dataAct = { ...data };
+    console.log("En linea 21 modifyproduct", dataAct);
     const id = dataAct.id;
     delete dataAct.id;
     var [resultado] = await Product.update(dataAct, {

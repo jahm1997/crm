@@ -35,7 +35,7 @@ const postProduct = async (req, res) => {
 const putProduct = async (req, res) => {
   const data = JSON.parse(req.body.productData);
   try {
-    if (req.file.path) {
+    if (req.file.path !== null) {
       var response = await updateProduct(data, req.file.path);
     } else {
       var response = await updateProduct(data);

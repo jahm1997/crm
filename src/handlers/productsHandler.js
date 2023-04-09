@@ -18,7 +18,6 @@ const getProducts = async (req, res) => {
 //----------------------------------- HANDLERS POST -----------------------------------\\
 const postProduct = async (req, res) => {
   const data = JSON.parse(req.body.productData);
-  console.log(data);
   try {
     if (req.file) {
       var response = await createProduct(data, req.file.path);
@@ -35,7 +34,6 @@ const postProduct = async (req, res) => {
 //----------------------------------- HANDLERS PUT -----------------------------------\\
 const putProduct = async (req, res) => {
   const data = JSON.parse(req.body.productData);
-  console.log(data);
   try {
     if (req.file) {
       var response = await updateProduct(data, req.file.path);

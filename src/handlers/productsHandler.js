@@ -22,13 +22,13 @@ const postProduct = async (req, res) => {
   const data = JSON.parse(req.body.productData);
   const { path } = req.file;
   try {
-    console.log("Esto es unicamente data =", data);
-    console.log("Esto es para saber que tipo es =", typeof data);
-    console.log(req.file);
+    // console.log("Esto es unicamente data =", data);
+    // console.log("Esto es para saber que tipo es =", typeof data);
+    // console.log(req.file);
     const img = fs.readFileSync(path).buffer;
     const image = await uploadFile(img, "products");
-    // const response = await createProduct({ ...data, image });
-    res.status(200).json("Todo ha salido perfecto");
+    const response = await createProduct({ ...data, image });
+    res.status(200).json(response);
   } catch (error) {
     console.log(error);
     res.status(400).json({ error: error.message });

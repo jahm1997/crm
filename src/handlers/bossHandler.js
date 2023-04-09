@@ -26,7 +26,7 @@ const getBoss = async (req, res) => {
 //----------------------------------- HANDLERS POST -----------------------------------\\
 const postBoss = async (req, res) => {
   //data={name,username,email,password}
-  const data = JSON.parse(req.body.LoginData); //ALERT!!!!
+  const data = JSON.parse(req.body.formLogin); //ALERT!!!!
   console.log(data);
   try {
     if (req.file) {
@@ -43,7 +43,7 @@ const postBoss = async (req, res) => {
 
 //----------------------------------- HANDLERS PUT -----------------------------------\\
 const putBoss = async (req, res) => {
-  const data = JSON.parse(req.body.loginData); //ALERT!!!!!
+  const data = JSON.parse(req.body.formLogin); //ALERT!!!!!
   console.log(data);
   try {
     if (req.file) {

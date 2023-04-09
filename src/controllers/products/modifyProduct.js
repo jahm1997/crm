@@ -11,6 +11,7 @@ const updateProduct = async (data, path) => {
     console.log("En linea 11 modifyproduct", dataAct);
     const id = dataAct.id;
     delete dataAct.id;
+    console.log("En linea 13 modifyproduct el id =", id);
     var [resultado] = await Product.update(dataAct, {
       where: {
         id,

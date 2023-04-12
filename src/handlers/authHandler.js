@@ -8,7 +8,7 @@ const loginUser = async (req, res) => {
   try {
     let exist = await findUser(email, password);
 
-    console.log('------EXIST------',exist);
+    // console.log('------EXIST------',exist);
 
     if(exist) {
       // if(password !== exist.password) {
@@ -26,19 +26,22 @@ const loginUser = async (req, res) => {
 
       const serialized = serialize('token', token, {
         httpOnly: true,
-        secure: false,
+        secure: true,
         sameSite: 'none',
         maxAge: 1000 * 60 * 60 * 24 * 7,
         path: '/'
       })
-
       // console.log('********** SERIALIZED ************', serialized);
 
       res.setHeader('Set-Cookie', serialized)
-      res.send('hola');
-    }
 
-    throw new Error('no había usuario ni en boss ni en salesman')
+      // console.log('******RES******',res);
+      return res.json({success:true, token});
+    } else {
+
+      throw new Error('no había usuario ni en boss ni en salesman');
+
+    }
 
   } catch (error) {
     console.log(error);

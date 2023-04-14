@@ -1,10 +1,19 @@
 require("dotenv").config();
+const { sendMail } = require("../controllers/email/notifyPayBoss.js");
 const axios = require("axios");
+const updateBoss = require("../controllers/Bosses/updateBoss");
 const { PAYPAL_API_CLIENT, PAYPAL_API_SECRET, PAYPAL_API } = process.env;
 
 const createOrder = async (req, res) => {
-  const { cantidad, monto, moneda } = req.body;
-  const clientID = 1;
+  const { cantidad, id } = req.body;
+  if (!cantidad) {
+    let cantDefault = 1;
+    let value = cantDefault * 100.00;
+    var valueStr = String(value)
+  } else {
+    let value = cantidad * 100.00;
+    var valueStr = String(value)
+  }
 
   try {
     const order = {
@@ -13,7 +22,7 @@ const createOrder = async (req, res) => {
         {
           amount: {
             currency_code: "USD",
-            value: "20.00",
+            value: valueStr,
           },
         },
       ],
@@ -26,8 +35,8 @@ const createOrder = async (req, res) => {
       },
     };
 
-    // console.log('Soy el api client', PAYPAL_API_CLIENT);
-    // console.log('Soy el api secret',PAYPAL_API_SECRET);
+    // console.log("Soy el api client", PAYPAL_API_CLIENT);
+    // console.log("Soy el api secret", PAYPAL_API_SECRET);
     // console.log(PAYPAL_API);
 
     const params = new URLSearchParams();
@@ -68,7 +77,8 @@ const createOrder = async (req, res) => {
 
 const captureOrder = async (req, res) => {
   try {
-    const { token, clientID } = req.query;
+    const { token, id } = req.query;
+    // console.log(token);
 
     const response = await axios.post(
       `${PAYPAL_API}/v2/checkout/orders/${token}/capture`,
@@ -81,19 +91,21 @@ const captureOrder = async (req, res) => {
       }
     );
 
-    // console.log(clientID);
+    const data = {id: id, enable: true};
+    const respuesta = await updateBoss(data);
+    // console.log(respuesta);
 
     // console.log(response.data)
 
-    res.redirect("/");
+    res.redirect("http://localhost:3000/dashboard/perfil");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).json({ error: err.message });
   }
 };
 
 const cancelOrder = (req, res) => {
-  res.redirect("/");
+  res.redirect("/api/boss");
 };
 
 module.exports = {

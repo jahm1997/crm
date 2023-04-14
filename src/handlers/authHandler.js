@@ -11,7 +11,7 @@ const loginUser = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
-const validaUser = async (req, res) => {
+const validateUser = async (req, res) => {
   console.log(req.body);
   try {
     let response = await validate(req.body);
@@ -24,5 +24,5 @@ const validaUser = async (req, res) => {
 
 module.exports = {
   loginUser,
-  validaUser,
+  validateUser,
 };

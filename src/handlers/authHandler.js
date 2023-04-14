@@ -24,4 +24,5 @@ const validaUser = async (req, res) => {
 
 module.exports = {
   loginUser,
+  validaUser,
 };

@@ -6,6 +6,6 @@ const loginRouter = Router();
 
 //Rutas
 loginRouter.post("/login", loginUser);
-loginRouter.post("/valida", validateUser);
+loginRouter.post("/validation", validateUser);
 
 module.exports = loginRouter;

@@ -80,9 +80,9 @@ server.use("/api", require("./routes"));
 server.use((err, req, res, next) => {
   // eslint-disable-line no-unused-vars
   const status = err.status || 500;
-  const message = err.message || err;
+  const message = err.message + " " + Date.now() || err;
   console.error(err);
-  res.status(status).send(Date.now(), message);
+  res.status(status).send(message);
 });
 
 module.exports = server;

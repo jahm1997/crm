@@ -13,7 +13,6 @@ const loginUser = async (req, res) => {
 const validateUser = async (req, res) => {
   try {
     let response = await validate(req.body);
-    console.log("response en el handler", response);
     return res.json(response);
   } catch (error) {
     console.log(error);

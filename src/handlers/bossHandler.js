@@ -26,12 +26,12 @@ const getBoss = async (req, res) => {
 //----------------------------------- HANDLERS POST -----------------------------------\\
 const postBoss = async (req, res) => {
   const data = JSON.parse(req.body.formLogin);
-  console.log("data parseado en linea 29", data);
   try {
     if (req.file) {
       var boss = await createBoss(data, req.file.path);
     } else {
       var boss = await createBoss(data);
+      console.log(boss);
     }
     res.status(200).send(boss);
   } catch (error) {

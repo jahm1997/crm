@@ -1,29 +1,33 @@
 const { Salesman, Boss } = require("../../db.js");
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 module.exports = async (data) => {
   const { myToken } = data;
+  if (!myToken) {
+    return false;
+  }
   const secret = "secret";
-  const decodificacion = jwt.verify(myToken, secret);
+  try {
+    var decodificacion = jwt.verify(myToken, secret);
+  } catch (error) {
+    return false;
+  }
   const { email, password } = decodificacion;
 
   let salesman = await Salesman.findOne({ where: { email: email } });
   if (salesman !== null) {
     if (password !== null) {
-      if (bcrypt.compareSync(password, salesman["password"])) {
+      if (password === salesman.dataValues["password"]) {
         return salesman.salesman.dataValues;
       }
     }
   }
   let boss = await Boss.findOne({ where: { email: email } });
-  if (boss.dataValues !== null) {
+  if (boss !== null) {
     if (password !== null) {
-      let veamos = bcrypt.compareSync(password, boss.dataValues.password);
-      console.log(veamos);
-      // if (bcrypt.compareSync(password, boss.dataValues.password)) {
-      //   console.log("se ejecutó linea 24", boss.dataValues);
-      // }
+      if (password === boss.dataValues.password) {
+        return boss.dataValues;
+      }
     }
   }
 
@@ -31,6 +35,4 @@ module.exports = async (data) => {
   //     let boss = await createBoss({ name, username: nickname, email, password });
   //     return createToken(boss, 'admin')
   //   }
-
-  //   throw new Error('User Not Exist')
 };

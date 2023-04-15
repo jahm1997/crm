@@ -67,7 +67,7 @@ module.exports = (database) => {
       },
     },
     {
-      timestamps: false,
+      timestamps: true,
     }
   );
 };

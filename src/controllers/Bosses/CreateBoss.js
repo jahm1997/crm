@@ -15,6 +15,7 @@ const createBoss = async (data, path) => {
       logo,
     });
   } else {
+    console.log("bos en la linea 18", data);
     var newBoss = await Boss.create({
       ...data,
       password: bcrypt.hashSync(data.password, 10),

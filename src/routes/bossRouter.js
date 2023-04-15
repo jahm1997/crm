@@ -6,7 +6,7 @@ const validateBoss = require("../middlewares/validateBoss.js");
 const bossRouter = Router();
 
 bossRouter.get("/boss", getBoss);
-bossRouter.post("/boss", validateBoss, postBoss);
+bossRouter.post("/boss", postBoss);
 bossRouter.put("/boss", putBoss);
 // bossRouter.delete("/boss", deleteBoss);
 

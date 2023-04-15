@@ -17,8 +17,10 @@ const createToken = (user, role) => {
 
 module.exports = async (data) => {
   const { myToken } = data;
-  console.log("esto es data.mytoken", myToken);
-  console.log("esto es solamentedata", data);
+  const secret = "secret";
+
+  const decodificacion = jwt.verify(myToken, secret);
+  console.log(decodificacion);
   //   const { email, password, name, nickname } = data
 
   //   let salesman = await Salesman.findOne({ where: { email: email } });

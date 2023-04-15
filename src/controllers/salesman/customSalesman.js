@@ -1,7 +1,8 @@
 const getMonthly_sales = require("../dashboard_salesman/getMonthly_sales");
 
 module.exports = async (salesman) => {
-  const { davaValues } = salesman;
+  console.log(salesman);
+  const { dataValues } = salesman;
   const {
     id,
     name,

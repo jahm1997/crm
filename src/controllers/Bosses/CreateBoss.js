@@ -20,6 +20,7 @@ const createBoss = async (data, path) => {
       password: bcrypt.hashSync(data.password, 10),
     });
   }
+  console.log(newBoss);
   sendMail(newBoss);
   return {
     ...newBoss.datavalues,

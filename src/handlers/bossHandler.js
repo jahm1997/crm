@@ -26,6 +26,7 @@ const getBoss = async (req, res) => {
 //----------------------------------- HANDLERS POST -----------------------------------\\
 const postBoss = async (req, res) => {
   const data = JSON.parse(req.body.formLogin);
+  console.log(data);
   try {
     if (req.file) {
       var boss = await createBoss(data, req.file.path);

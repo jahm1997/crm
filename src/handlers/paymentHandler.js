@@ -134,7 +134,7 @@ const captureOrder = async (req, res) => {
 };
 
 const cancelOrder = (req, res) => {
-  res.redirect("https://crm-henry-34b.vercel.app/api/dashboard/perfil");
+  res.redirect("https://crm-henry-34b.vercel.app/dashboard/perfil");
 };
 
 module.exports = {

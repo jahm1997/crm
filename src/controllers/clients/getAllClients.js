@@ -11,17 +11,18 @@ module.exports = async ({ salesmanId, bossId }) => {
     var allClients = allClientsbyseller.map((e) => e.dataValues);
   }
 
-  // if (bossId) {
-  //   var allClientsbyboss = await Client.findAll({
-  //     include: {
-  //       model: Salesman,
-  //       where: {
-  //         bossId,
-  //       },
-  //     },
-  //   });
-  //   var allClientes = allClientsbyboss.map((e) => e.dataValues);
-  // }
+  if (bossId) {
+    var allClientsbyboss = await Client.findAll({
+      include: {
+        model: Salesman,
+        where: {
+          bossId,
+        },
+      },
+    });
+    var allClients = allClientsbyboss.map((e) => e.dataValues);
+  }
+
   const resultadoFinal = await Promise.all(
     allClients.map(async (c) => {
       let estado = await statusNegotiation({ id: c.id });

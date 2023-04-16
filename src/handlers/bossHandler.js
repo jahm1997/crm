@@ -42,6 +42,7 @@ const postBoss = async (req, res) => {
 
 //----------------------------------- HANDLERS PUT -----------------------------------\\
 const putBoss = async (req, res) => {
+  console.log(req.body);
   const data = JSON.parse(req.body.formLogin);
   console.log(data);
   try {

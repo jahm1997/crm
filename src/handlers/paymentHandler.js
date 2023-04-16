@@ -126,7 +126,7 @@ const captureOrder = async (req, res) => {
     //ACABO DE PEGAR ESTE CODIGO DE NUEVO (ENVIO DE EMAIL AL REALIZAR LA COMPRA)
     //console.log(response.data.purchase_units[0].payments.captures[0].amount.value)
 
-    res.redirect("https://crm-henry-34b.vercel.app/dashboard/perfil");
+    res.redirect("https://crm-henry-34b.vercel.app/dashboard");
   } catch (err) {
     // console.log(err);
     res.status(500).json({ error: err.message });
@@ -134,7 +134,7 @@ const captureOrder = async (req, res) => {
 };
 
 const cancelOrder = (req, res) => {
-  res.redirect("https://crm-henry-34b.vercel.app/dashboard/perfil");
+  res.redirect("https://crm-henry-34b.vercel.app/dashboard");
 };
 
 module.exports = {

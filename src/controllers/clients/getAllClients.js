@@ -3,15 +3,14 @@ const statusNegotiation = require("./statusNegotiation.js");
 const ctotalPurchased = require("./totalPurchased.js");
 
 module.exports = async ({ salesmanId, bossId }) => {
-  // if (!salesmanId && !bossId) throw new Error("salesmanId or bossId required");
-  if (!salesmanId) throw new Error("salesmanId  required");
+  if (!salesmanId && !bossId) throw new Error("salesmanId or bossId required");
+
+  let allClients;
 
   if (salesmanId) {
     const allClientsbyseller = await Client.findAll({ where: { salesmanId } });
-    var allClients = allClientsbyseller.map((e) => e.dataValues);
-  }
-
-  if (bossId) {
+    allClients = allClientsbyseller.map((e) => e.dataValues);
+  } else if (bossId) {
     var allClientsbyboss = await Client.findAll({
       include: {
         model: Salesman,
@@ -20,17 +19,17 @@ module.exports = async ({ salesmanId, bossId }) => {
         },
       },
     });
-    var allClients = allClientsbyboss.map((e) => e.dataValues);
+    allClients = allClientsbyboss.map((e) => e.dataValues);
   }
-
+  console.log("allClients", allClients);
   const resultadoFinal = await Promise.all(
     allClients.map(async (c) => {
       let estado = await statusNegotiation({ id: c.id });
       if (estado == null) {
         estado = { state: "Pendiente" };
       }
-      // delete c.dataValues.salesman;
       const { totalPurchased, categories } = await ctotalPurchased({
+        // delete c.dataValues.salesman;
         id: c.id,
       });
       return {
@@ -41,5 +40,10 @@ module.exports = async ({ salesmanId, bossId }) => {
       };
     })
   );
+  console.log(resultadoFinal);
+  if (!resultadoFinal) {
+    return [];
+  }
+
   return resultadoFinal;
 };

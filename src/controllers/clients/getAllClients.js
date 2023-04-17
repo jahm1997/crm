@@ -3,6 +3,7 @@ const statusNegotiation = require("./statusNegotiation.js");
 const ctotalPurchased = require("./totalPurchased.js");
 
 module.exports = async ({ salesmanId, bossId }) => {
+  console.log(salesmanId + " y " + bossId);
   if (!salesmanId && !bossId) throw new Error("salesmanId or bossId required");
 
   let allClients;

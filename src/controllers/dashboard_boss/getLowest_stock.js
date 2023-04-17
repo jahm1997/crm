@@ -10,7 +10,10 @@ module.exports = async (id) => {
     ],
   });
 
-  console.log(allProducts);
+  console.log(
+    "ESTO SON TODOS LOS PRODUCTOS LINEA 13 EN GETLOWEST_STOCK",
+    allProducts
+  );
 
   if (allProducts.length) {
     const products = allProducts.dataValues.products;

@@ -44,7 +44,7 @@ module.exports = async (data) => {
       username: nickname,
       email,
     });
-    console.log(boss);
+    console.log("Este es find user antes de mandar el token", boss);
     return createToken(boss, "admin");
   }
 

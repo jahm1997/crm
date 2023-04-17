@@ -16,6 +16,7 @@ const createBoss = async (data, path) => {
       logo,
     });
   } else {
+    console.log("Esto es data antes de entra a db", data);
     var newBoss = await Boss.create({
       ...data,
       password: bcrypt.hashSync(data.password, 10),

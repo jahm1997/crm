@@ -16,7 +16,7 @@ module.exports = async (id) => {
     "AQUI FINALIZA"
   );
 
-  if (allProducts.length) {
+  if (allProducts.dataValues.products.length) {
     const products = allProducts.dataValues.products;
     let lowest_stock = products.map((p) => {
       const { name, quantity, discount } = p.dataValues;

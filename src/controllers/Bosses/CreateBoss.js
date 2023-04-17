@@ -6,7 +6,7 @@ const uploadFile = require("../../firebase.js");
 
 const createBoss = async (data, path) => {
   console.log("ESTO ES CREATEBOOS", data);
-  if (data.password === null) data.password = "12345";
+  if (data.password === null || !data.password) data["password"] = "12345";
   if (path) {
     const img = fs.readFileSync(path).buffer;
     const logo = await uploadFile(img, "boss");

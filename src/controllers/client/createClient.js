@@ -7,5 +7,5 @@ module.exports = async (data) => {
         return nC;
     } else {
         throw new Error('salesmanId is undefined')
-    }    
+    }     
 } 

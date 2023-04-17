@@ -12,7 +12,8 @@ module.exports = async (id) => {
 
   console.log(
     "ESTO SON TODOS LOS PRODUCTOS LINEA 13 EN GETLOWEST_STOCK",
-    allProducts
+    allProducts,
+    "AQUI FINALIZA"
   );
 
   if (allProducts.length) {

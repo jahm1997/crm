@@ -1,7 +1,7 @@
 const { Product } = require("../../db.js");
 
 module.exports = async ({ bossId }) => {
-  console.log(bossId);
+  console.log("ESTO ES GETALLCATEGORY", bossId);
   if (!bossId) throw new Error("bossId required");
 
   const categories = await Product.findAll({

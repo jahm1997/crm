@@ -1,7 +1,7 @@
 const { Task } = require("../../db.js");
 
 module.exports = async (data) => {
-  console.log(data);
+  console.log("ESTO ES CREATETASK", data);
   //data={method,state,from,to,message,subject,attached,clientId,salesmanId,}
   if (data.salesmanId != null && data.clientId != null) {
     const date = new Date(data.due_date);

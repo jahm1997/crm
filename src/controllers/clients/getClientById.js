@@ -3,7 +3,7 @@ const statusNegotiation = require("./statusNegotiation.js");
 const ctotalPurchased = require("./totalPurchased.js");
 
 module.exports = async (id) => {
-  console.log(id);
+  console.log("ESTO ES GETCLIENBYID", id);
   const client = await Client.findByPk(id);
   if (client === null) return client;
 

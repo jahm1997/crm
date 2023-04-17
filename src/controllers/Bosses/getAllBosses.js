@@ -7,7 +7,6 @@ const getAllBosses = async () => {
     jefe.role = "admin";
     return jefe;
   });
-  console.log("ESTO ES GETALLBOSES", jefes);
   return jefes;
 };
 

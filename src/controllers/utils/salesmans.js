@@ -22,7 +22,7 @@ module.exports = [
       enable: true,
     },
     {
-      name: "Mrs. Dennis Schulist",
+      name: "Mrs Dennis Schulist",
       address: "Norberto Crossing Apt. 950, South Christy",
       email: "dennischule@april.biz",
       phone: "77935847845",
@@ -59,7 +59,7 @@ module.exports = [
       enable: true,
     },
     {
-      name: "Mrs. Maych Schuls",
+      name: "Mrs Maych Schuls",
       address: "Norberto Crossing Apt. 950, South Christy",
       email: "dennischule@april.biz",
       phone: "77935847835",

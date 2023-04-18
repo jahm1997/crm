@@ -61,7 +61,7 @@ const salesmans = [
       enable: true,
     },
     {
-      name: "Mrs. Dennis Schulist",
+      name: "Mrs Dennis Schulist",
       address: "Norberto Crossing Apt. 950, South Christy",
       email: "dennischule@april.biz",
       phone: 779358478,
@@ -98,7 +98,7 @@ const salesmans = [
       enable: true,
     },
     {
-      name: "Mrs. Maych Schuls",
+      name: "Mrs Maych Schuls",
       address: "Norberto Crossing Apt. 950, South Christy",
       email: "dennischule@april.biz",
       phone: 779358478,

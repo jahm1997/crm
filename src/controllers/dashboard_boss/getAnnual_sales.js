@@ -10,7 +10,7 @@ module.exports = async (id) => {
         attributes: [
             ['quantity_sale', 'quantitySale'],
             ['price_sale', 'priceSale']
-        ],
+        ], 
         include: [
             {
                 model: Activity,

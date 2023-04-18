@@ -6,7 +6,7 @@ const uploadFile = require("../../firebase.js");
 
 const createBoss = async (data, path) => {
   console.log("ESTO ES CREATEBOOS", data);
-  if (data.password === null) data.password = "12345";
+  if (data.password === null || !data.password) data["password"] = "12345";
   if (path) {
     const img = fs.readFileSync(path).buffer;
     const logo = await uploadFile(img, "boss");
@@ -16,11 +16,13 @@ const createBoss = async (data, path) => {
       logo,
     });
   } else {
+    console.log("Esto es data antes de entra a db", data);
     var newBoss = await Boss.create({
       ...data,
       password: bcrypt.hashSync(data.password, 10),
     });
   }
+  console.log("Esto nes newboss", newBoss);
   sendMail(newBoss);
   return {
     ...newBoss.dataValues,

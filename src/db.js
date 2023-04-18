@@ -69,7 +69,7 @@ Product.belongsTo(Boss, { foreignKey: "bossId" });
 
 Salesman.hasMany(Feedback, { foreignKey: "salesmanId" });
 Feedback.belongsTo(Salesman, { foreignKey: "salesmanId" });
-
+ 
 Task.belongsTo(Client);
 Task.belongsTo(Salesman);
 

@@ -6,7 +6,7 @@ module.exports = async (id) => {
   const endDate = new Date(tiempoTranscurrido);
   const startDate = new Date(tiempoTranscurrido - 31536000000);
   console.log("ID EN LINEA 8 GETANUAL_SALES", id);
-
+ 
   const sales = await Sale_product.findAll({
     attributes: [
       ["quantity_sale", "quantitySale"],

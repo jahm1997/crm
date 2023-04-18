@@ -65,4 +65,5 @@ module.exports = async (id) => {
   });
 
   return annual_sales;
+  
 };

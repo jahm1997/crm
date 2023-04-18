@@ -28,8 +28,6 @@ module.exports = (database) => {
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false,
-      defaultValue: "12345",
     },
     phone: {
       type: DataTypes.STRING,
@@ -43,6 +41,9 @@ module.exports = (database) => {
     },
     image: {
       type: DataTypes.STRING,
+    },
+    due_data: {
+      type: DataTypes.DATE,
     },
   });
 };

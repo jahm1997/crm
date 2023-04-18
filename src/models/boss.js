@@ -13,7 +13,6 @@ module.exports = (database) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          is: /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/,
           len: [3, 40],
         },
       },
@@ -23,6 +22,9 @@ module.exports = (database) => {
         validate: {
           len: [3, 40],
         },
+      },
+      image: {
+        type: DataTypes.STRING,
       },
       company: {
         type: DataTypes.STRING,
@@ -49,8 +51,6 @@ module.exports = (database) => {
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: "12345",
       },
       phone: {
         type: DataTypes.STRING,
@@ -63,7 +63,10 @@ module.exports = (database) => {
       },
       enable: {
         type: DataTypes.BOOLEAN,
-        defaultValue: true,
+        defaultValue: false,
+      },
+      due_data: {
+        type: DataTypes.DATE,
       },
     },
     {

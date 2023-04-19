@@ -22,7 +22,6 @@ module.exports = async ({ salesmanId, bossId }) => {
     });
     allClients = allClientsbyboss.map((e) => e.dataValues);
   }
-  console.log("allClients", allClients);
   const resultadoFinal = await Promise.all(
     allClients.map(async (c) => {
       let estado = await statusNegotiation({ id: c.id });
@@ -41,7 +40,6 @@ module.exports = async ({ salesmanId, bossId }) => {
       };
     })
   );
-  console.log(resultadoFinal);
   if (!resultadoFinal) {
     return [];
   }

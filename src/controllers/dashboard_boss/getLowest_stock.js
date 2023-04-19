@@ -2,6 +2,7 @@ const { Boss, Product } = require("../../db.js");
 const { where, Op } = require("sequelize");
 
 module.exports = async (id) => {
+  console.log(id);
   const allProducts = await Boss.findByPk(id, {
     include: [
       {
@@ -9,12 +10,6 @@ module.exports = async (id) => {
       },
     ],
   });
-
-  console.log(
-    "ESTO SON TODOS LOS PRODUCTOS LINEA 13 EN GETLOWEST_STOCK",
-    allProducts,
-    "AQUI FINALIZA"
-  );
 
   if (allProducts !== null) {
     const products = allProducts.dataValues.products;

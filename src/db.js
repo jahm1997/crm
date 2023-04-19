@@ -64,12 +64,12 @@ Activity.belongsTo(Salesman);
 Salesman.belongsTo(Boss);
 Client.belongsTo(Salesman);
 
-Boss.hasMany(Product, { foreignKey: "bossId" });
-Product.belongsTo(Boss, { foreignKey: "bossId" });
+Boss.hasMany(Product, { foreignKey: 'bossId' });
+Product.belongsTo(Boss, { foreignKey: 'bossId' });
 
-Salesman.hasMany(Feedback, { foreignKey: "salesmanId" });
-Feedback.belongsTo(Salesman, { foreignKey: "salesmanId" });
- 
+Salesman.hasMany(Feedback, { foreignKey: 'salesmanId' });
+Feedback.belongsTo(Salesman, { foreignKey: 'salesmanId' });
+
 Task.belongsTo(Client);
 Task.belongsTo(Salesman);
 

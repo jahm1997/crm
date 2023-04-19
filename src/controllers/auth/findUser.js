@@ -35,6 +35,10 @@ module.exports = async (data) => {
   let boss = await Boss.findOne({ where: { email: email } });
   if (boss !== null) {
     if (password !== null) {
+      console.log(password);
+      console.log("******y*******");
+      console.log(boss.dataValues["password"]);
+
       if (bcrypt.compareSync(password, boss.dataValues["password"]))
         return createToken(boss, "admin");
       else throw new Error("Boss Password Incorrect");

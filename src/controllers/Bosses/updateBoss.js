@@ -2,6 +2,7 @@ const { Boss } = require("../../db.js");
 const getBossById = require("./getBossById.js");
 const fs = require("fs");
 const uploadFile = require("../../firebase.js");
+const bcrypt = require("bcrypt");
 
 const updateBoss = async (data, path) => {
   console.log("ESTO ES UPDATE-BOSS", data);
@@ -12,17 +13,17 @@ const updateBoss = async (data, path) => {
     const dataAct = { ...data, logo };
     var id = dataAct.id;
     delete dataAct.id;
-    dataAct.password= bcrypt.hashSync(password, 10)
+    dataAct.password = bcrypt.hashSync(password, 10);
     var [resultado] = await Boss.update(dataAct, {
       where: {
-        id,        
+        id,
       },
     });
   } else {
     const dataAct = { ...data };
     var id = dataAct.id;
     delete dataAct.id;
-    dataAct.password= bcrypt.hashSync(password, 10)
+    dataAct.password = bcrypt.hashSync(password, 10);
     var resultado = await Boss.update(dataAct, {
       where: {
         id,

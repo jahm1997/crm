@@ -2,6 +2,7 @@ require("dotenv").config();
 const { sendMail } = require("../controllers/email/notifyPayBoss.js");
 const axios = require("axios");
 const updateBoss = require("../controllers/Bosses/updateBoss");
+const getBossById = require("../controllers/Bosses/getBossById.js");
 const { PAYPAL_API_CLIENT, PAYPAL_API_SECRET, PAYPAL_API } = process.env;
 
 const createOrder = async (req, res) => {
@@ -81,21 +82,22 @@ const captureOrder = async (req, res) => {
         },
       }
     );
+    
+    let boss = await getBossById(id);
+    console.log('Soy el Boss',boss);
 
-    console.log("Soy el response");
-    let fechaRegistro =
-      response.data.purchase_units[0].payments.captures[0].create_time;
-    let payDay = new Date(fechaRegistro);
+    let fechaRegistro = response.data.purchase_units[0].payments.captures[0].create_time;
+    let payDay = new Date(fechaRegistro)
     payDay.setDate(payDay.getDate() + 30);
     // console.log('PAyday',payDay);
 
     // console.log('Soy el payMounth',payMonth);
     // console.log('Soy el payYear',payYear);
     // console.log(payDay);
-    const data = { id: id, enable: true, pay_day: payDay };
+    const data = { ...boss, enable: true , pay_day: payDay};
     // const data = { id: id, enable: true };
     const respuesta = await updateBoss(data);
-    console.log("Soy la respuesta______", respuesta);
+    console.log('Soy la respuesta______',respuesta);
 
     // console.log('Soy el response.data -----------',response.data);
 
@@ -106,11 +108,11 @@ const captureOrder = async (req, res) => {
       ...info,
       ...response.data.purchase_units[0].payments.captures[0],
     };
-
+    
     sendMail(respuesta, dataPay);
     //ACABO DE PEGAR ESTE CODIGO DE NUEVO (ENVIO DE EMAIL AL REALIZAR LA COMPRA)
     //console.log(response.data.purchase_units[0].payments.captures[0].amount.value)
-    console.log("fianlizó");
+    console.log('fianlizó');
     res.redirect("https://crm-henry-34b.vercel.app/success");
   } catch (err) {
     // console.log(err);

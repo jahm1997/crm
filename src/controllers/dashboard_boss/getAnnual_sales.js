@@ -31,7 +31,7 @@ module.exports = async (id) => {
       },
     ],
   });
-  console.log("ESTO ES SALES EN LINEA 34 GET ANUAL_SALES", sales);
+  //console.log("ESTO ES SALES EN LINEA 34 GET ANUAL_SALES", sales);
 
   let annual_sales = {};
   const month = [

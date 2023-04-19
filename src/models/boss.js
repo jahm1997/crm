@@ -46,7 +46,6 @@ module.exports = (database) => {
       password: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: "12345",
         //Agregar validación estricta (Mas de 8 caract, min 1 mayuscula, min 1 num, etc)
       },
       phone: {

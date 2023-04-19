@@ -1,32 +1,50 @@
 const { Boss } = require("../../db.js");
-const { sendMail } = require("../email/email.js");
-const bcrypt = require("bcrypt");
+const getBossById = require("./getBossById.js");
 const fs = require("fs");
 const uploadFile = require("../../firebase.js");
+const bcrypt = require("bcrypt");
 
-const createBoss = async (data, path) => {
-  console.log("ESTO ES CREATEBOOS", data);
-  if (data.password === null || !data.password) data["password"] = "12345";
+const updateBoss = async (data, path) => {
+  console.log("ESTO ES UPDATE-BOSS", data);
   if (path) {
     const img = fs.readFileSync(path).buffer;
     const logo = await uploadFile(img, "boss");
-    var newBoss = await Boss.create({
-      ...data,
-      password: bcrypt.hashSync(data.password, 10),
-      logo,
+    const dataAct = { ...data, logo };
+    var id = dataAct.id;
+    delete dataAct.id;
+    console.log("llegó aqui linea 15");
+    if (data["password"]) {
+      dataAct.password = bcrypt.hashSync(password, 10);
+    }
+    console.log("llegó aqui linea 19");
+    var resultado = await Boss.update(dataAct, {
+      where: {
+        id,
+      },
     });
   } else {
-    console.log("Esto es data antes de entra a db", data);
-    var newBoss = await Boss.create({
-      ...data,
-      password: bcrypt.hashSync(data.password, 10),
+    const dataAct = { ...data };
+    var id = dataAct.id;
+    delete dataAct.id;
+    console.log("llegó aqui linea 29");
+    if (data["password"]) {
+      dataAct.password = bcrypt.hashSync(password, 10);
+    }
+    console.log("llegó aqui linea 33");
+    var resultado = await Boss.update(dataAct, {
+      where: {
+        id,
+      },
     });
   }
-  sendMail(newBoss);
-  return {
-    ...newBoss.dataValues,
-    role: "admin",
-  };
+  console.log(resultado);
+  if (resultado) {
+    const boss = await getBossById(id);
+    return {
+      ...boss,
+      role: "admin",
+    };
+  } else throw new Error("Failed to update, missing information");
 };
 
-module.exports = createBoss;
+module.exports = updateBoss;

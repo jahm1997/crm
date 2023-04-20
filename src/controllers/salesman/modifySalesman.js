@@ -6,7 +6,6 @@ const bcrypt = require("bcrypt");
 
 module.exports = async (data, path) => {
   console.log("ESTO ES UPDATE-SALESMAN", data);
-  const { password } = data;
 
   if (path) {
     const img = fs.readFileSync(path).buffer;
@@ -14,7 +13,9 @@ module.exports = async (data, path) => {
     const dataAct = { ...data, image };
     var id = dataAct.id;
     delete dataAct.id;
-    dataAct.password = bcrypt.hashSync(password, 10);
+    if (data["password"]) {
+      dataAct.password = bcrypt.hashSync(data["password"], 10);
+    }
     var [resultado] = await Salesman.update(dataAct, {
       where: {
         id,
@@ -24,7 +25,9 @@ module.exports = async (data, path) => {
     const dataAct = { ...data };
     var id = dataAct.id;
     delete dataAct.id;
-    dataAct.password = bcrypt.hashSync(password, 10);
+    if (data["password"]) {
+      dataAct.password = bcrypt.hashSync(data["password"], 10);
+    }
     var [resultado] = await Salesman.update(dataAct, {
       where: {
         id,

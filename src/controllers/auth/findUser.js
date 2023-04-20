@@ -26,6 +26,7 @@ module.exports = async (data) => {
       if (bcrypt.compareSync(password, salesman.dataValues["password"]))
         if (salesman.dataValues.enable !== false) {
           const vendedor = getAllSalesman(salesman.dataValues.id);
+          console.log(vendedor);
           const token = jwt.sign(
             {
               exp: Math.floor(Date.now() / 1000) * 60 * 60 * 24 * 7,

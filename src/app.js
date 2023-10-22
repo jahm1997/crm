@@ -24,7 +24,24 @@ server.name = "API";
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
-server.use(morgan("dev"));
+//------------------------morgan configure response ---------------------
+morgan.token("client-ip", (req) => {
+  return req.ip;
+});
+
+function customCombinedFormat(tokens, req, res) {
+  // Llama a next para continuar con el siguiente middleware
+  // return morgan("client-ip")(req, res, () => {});
+  // const commonFormat = morgan("common")(req, res, () => {});
+  // return tokens["client-ip"](req);
+  // return morgan("combined")(req, res, () => {});
+  return morgan("dev")(req, res, () => {});
+  // return `${commonFormat} -/> ${devFormat} -> ${clientipFormat} `;
+}
+
+// Utiliza el formato personalizado en Morgan
+server.use(morgan(customCombinedFormat));
+//------------------------morgan configure response ---------------------
 server.use((req, res, next) => {
   // cors({
   //   origin: 'http://localhost:3000',
@@ -34,7 +51,10 @@ server.use((req, res, next) => {
   //   preflightContinue: true
   // })
 
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://hvbqgvrf-5005.use2.devtunnels.ms"
+  ); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",

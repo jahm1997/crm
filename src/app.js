@@ -24,6 +24,7 @@ server.name = "API";
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
+
 //------------------------morgan configure response ---------------------
 morgan.token("client-ip", (req) => {
   return req.ip;
@@ -42,6 +43,7 @@ function customCombinedFormat(tokens, req, res) {
 // Utiliza el formato personalizado en Morgan
 server.use(morgan(customCombinedFormat));
 //------------------------morgan configure response ---------------------
+
 server.use((req, res, next) => {
   // cors({
   //   origin: 'http://localhost:3000',

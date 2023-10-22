@@ -28,7 +28,7 @@ module.exports = async (data) => {
     //Solo cuando se modifica el estado de negociacion
     let infoActivity = { ...activity.dataValues, statePrev };
     if (statePrev !== infoActivity.state) {
-      sendMail(vendedor, cliente, infoActivity, "cambio");
+      // sendMail(vendedor, cliente, infoActivity, "cambio");
     }
 
     return activity;

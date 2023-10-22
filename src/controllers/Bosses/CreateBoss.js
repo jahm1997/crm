@@ -23,7 +23,7 @@ const createBoss = async (data, path) => {
       password: bcrypt.hashSync(data.password, 10),
     });
   }
-  sendMail(newBoss);
+  // sendMail(newBoss);
   return {
     ...newBoss.dataValues,
     role: "admin",

@@ -56,12 +56,12 @@ module.exports = async () => {
         salesman = (await Salesman.findByPk(task[i].salesmanId)).dataValues;
         client = (await Client.findByPk(task[i].clientId)).dataValues;
 
-        sendMail(
-          salesman,
-          client,
-          task[i],
-          (time = task[i].due_date.slice(8, 10) - date.slice(8, 10))
-        );
+        // sendMail(
+        //   salesman,
+        //   client,
+        //   task[i],
+        //   (time = task[i].due_date.slice(8, 10) - date.slice(8, 10))
+        // );
       }
       salesman = {};
       client = {};

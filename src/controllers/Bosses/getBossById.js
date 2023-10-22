@@ -5,6 +5,7 @@ module.exports = async (id) => {
   console.log("ESTO ES GETBOSS", id);
   if (id) {
     const boss = await Boss.findByPk(id);
+    console.log(boss);
     return {
       ...boss.dataValues,
       role: "admin",

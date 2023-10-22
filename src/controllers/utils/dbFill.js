@@ -22,9 +22,10 @@ module.exports = async ({
     });
     const salesmanArr = salesmans[i];
     const productArr = products[i];
+    console.log(productArr);
     const activitiesArr = Object.values(activities)[i];
     console.log("**BOSSES", [i + 1], "/", [bosses.length]);
-    for (let w = 0; w < productArr.length; w++) {
+    for (let w = 0; w <= productArr.length; w++) {
       const newProduct = await Product.findOrCreate({
         where: { ...productArr[w], bossId: newBoss[0].dataValues.id },
       });

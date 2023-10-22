@@ -19,11 +19,11 @@ module.exports = async (data) => {
     //console.log("Este es cliente", cliente);
     try {
       if (data.state === "Concretado") {
-        sendMailFeedback(vendedor, cliente, newActivity.dataValues);
+        // sendMailFeedback(vendedor, cliente, newActivity.dataValues);
       }
-      sendMail(vendedor, cliente, newActivity.dataValues, "creacion");
+      // sendMail(vendedor, cliente, newActivity.dataValues, "creacion");
     } catch (error) {
-      return error
+      return error;
     }
 
     return newActivity;

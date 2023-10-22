@@ -14,9 +14,9 @@ const updateBoss = async (data, path) => {
     delete dataAct.id;
     delete dataAct.createdAt;
     delete dataAct.updatedAt;
-    if (data["password"]) {
-      dataAct.password = bcrypt.hashSync(data["password"], 10);
-    }
+    // if (data["password"]) {
+    //   dataAct.password = bcrypt.hashSync(data["password"], 10);
+    // }
     var resultado = await Boss.update(dataAct, {
       where: {
         id,
@@ -28,9 +28,10 @@ const updateBoss = async (data, path) => {
     delete dataAct.id;
     delete dataAct.createdAt;
     delete dataAct.updatedAt;
-    if (data["password"].length < 25) {
-      dataAct.password = bcrypt.hashSync(data["password"], 10);
-    }
+    console.log(data);
+    // if (data["password"].length < 5) {
+    //   dataAct.password = bcrypt.hashSync(data["password"], 10);
+    // }
 
     var resultado = await Boss.update(dataAct, {
       where: {

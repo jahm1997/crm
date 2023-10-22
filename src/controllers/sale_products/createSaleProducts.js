@@ -30,9 +30,9 @@ module.exports = async (data) => {
       .dataValues;
     //Debe recibir (client, salesman, product, sale_product)
     try {
-      sendMail(client, salesman, product.dataValues, data);
+      // sendMail(client, salesman, product.dataValues, data);
     } catch (error) {
-      return error
+      return error;
     }
 
     //Product ======> (id, name, quantity,cost_price, sale_price, discount)

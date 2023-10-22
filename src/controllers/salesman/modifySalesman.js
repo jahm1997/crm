@@ -12,6 +12,7 @@ module.exports = async (data, path) => {
     const image = await uploadFile(img, "salesman");
     const dataAct = { ...data, image };
     var id = dataAct.id;
+    console.log(dataAct);
     delete dataAct.id;
     if (data["password"]) {
       dataAct.password = bcrypt.hashSync(data["password"], 10);

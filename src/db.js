@@ -5,14 +5,20 @@ const path = require("path");
 const dbFill = require("./controllers/utils/dbFill");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, PORT } = process.env;
 // console.log(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${PORT}/${DB_NAME}`);
-const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${PORT}/${DB_NAME}`,
-  {
-    logging: false,
-    native: false,
-    force: false,
-  }
-);
+// const sequelize = new Sequelize(
+//   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${PORT}/${DB_NAME}`,
+//   {
+//     logging: false,
+//     native: false,
+//     force: true,
+//   }
+// );
+const sequelize = new Sequelize("crm", DB_USER, DB_PASSWORD, {
+  host: DB_HOST,
+  dialect: "postgres",
+  logging: false,
+  force: false,
+});
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -64,11 +70,11 @@ Activity.belongsTo(Salesman);
 Salesman.belongsTo(Boss);
 Client.belongsTo(Salesman);
 
-Boss.hasMany(Product, { foreignKey: 'bossId' });
-Product.belongsTo(Boss, { foreignKey: 'bossId' });
+Boss.hasMany(Product, { foreignKey: "bossId" });
+Product.belongsTo(Boss, { foreignKey: "bossId" });
 
-Salesman.hasMany(Feedback, { foreignKey: 'salesmanId' });
-Feedback.belongsTo(Salesman, { foreignKey: 'salesmanId' });
+Salesman.hasMany(Feedback, { foreignKey: "salesmanId" });
+Feedback.belongsTo(Salesman, { foreignKey: "salesmanId" });
 
 Task.belongsTo(Client);
 Task.belongsTo(Salesman);
